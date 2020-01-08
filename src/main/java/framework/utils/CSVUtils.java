@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CSVUtils {
-    public static void toCSVFile(ResultSet resultSet){
-        String csv = "src/test/results/firstRequest.csv";
+    public static void toCSVFile(ResultSet resultSet, String fileSrc){
+        String csv = String.format("src/test/results/%s", fileSrc);
         CSVWriter writer = null;
         try{
             writer = new CSVWriter(new FileWriter(csv, true));

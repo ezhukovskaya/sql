@@ -1,23 +1,23 @@
 package framework.utils;
 
-import Constants.SQLServerConstants;
-import com.mysql.fabric.jdbc.FabricMySQLDriver;
+import constants.SQLServerConstants;
+import framework.sql.SQLBrowser;
+import models.DBConnection;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class SQLUtils {
+    private static DBConnection dbModel = new DBConnection(SQLServerConstants.URL, SQLServerConstants.USERNAME, SQLServerConstants.PASSWORD);
 
     public static ResultSet getResult(String sqlRequest) {
         try {
-            Driver driver = new FabricMySQLDriver();
-            DriverManager.registerDriver(driver);
+            Statement stmt = SQLBrowser.getConnection(dbModel).createStatement();
+            return stmt.executeQuery(sqlRequest);
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try (Connection connection = DriverManager.getConnection(SQLServerConstants.URL, SQLServerConstants.USERNAME, SQLServerConstants.PASSWORD); Statement statement = connection.createStatement()){
-            return statement.executeQuery(sqlRequest);
-        } catch (SQLException e) {
+            System.out.println("failed!");
             e.printStackTrace();
         }
         return null;

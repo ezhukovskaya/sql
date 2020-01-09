@@ -1,7 +1,9 @@
 package constants;
 
+import framework.utils.PropertiesRead;
+
 public class SQLServerConstants {
-    public static final String URL = "jdbc:mysql://localhost:3306/union_reporting?autoReconnect=true&useSSL=false";
-    public static final String USERNAME = null;
-    public static final String PASSWORD = null;
+    public static final String URL = PropertiesRead.readFromFrameworkConfig("url");
+    public static final String USERNAME = PropertiesRead.readFromFrameworkConfig("username");
+    public static final String PASSWORD = PropertiesRead.readFromFrameworkConfig("password");
 }

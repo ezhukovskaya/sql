@@ -13,6 +13,7 @@ import java.sql.Statement;
 public class SQLUtils {
     private static DBConnection dbModel = new DBConnection(SQLServerConstants.URL, SQLServerConstants.USERNAME, SQLServerConstants.PASSWORD);
     private static final Logger log = Logger.getLogger(SQLUtils.class);
+
     public static ResultSet getResult(String sqlRequest) {
         try {
             Statement stmt = SQLBrowser.getConnection(dbModel).createStatement();
